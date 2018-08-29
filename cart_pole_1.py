@@ -20,9 +20,9 @@ state_transition_count = np.zeros(
     (num_States, num_Actions, num_States), dtype=np.float32)
 
 # initialize vector with state rewards
-state_rewards_record = np.zeros(num_States, 1)
-state_rewards_count = np.zeros(num_States, 1)
-state_rewards = np.zeros(num_States, 1)
+state_rewards_record = np.zeros((num_States, 1))
+state_rewards_count = np.zeros((num_States, 1))
+state_rewards = np.zeros((num_States, 1))
 
 # Initiliazing state_transition probabilities as a uniform distribution
 
@@ -55,25 +55,26 @@ for i_epsisode in range(20):
         if done:
             state_rewards_count[new_state] += 1
             state_rewards_record[new_state] += -1
-                       
+
             # print("Termination State Reward ", reward)
             print("Episode finished {} timestamps ". format(t+1))
 
-          
             break
 
     # Update state transition probabilities taking into account only the action pairs observed
 
     total_state_transition_count = np.sum(state_transition_count, axis=2)
     mask = total_state_transition_count > 0
+
     state_transition_probs[mask] = state_transition_count[mask] / \
-        total_state_transition_count[mask]
-    
-    #Update reward vector
+        total_state_transition_count[mask].reshape(-1, 1)
+
+    # Update reward vector
+    print(state_rewards_count.shape)
+    print(state_rewards_record.shape)
+    print(state_rewards.shape)
     mask0 = state_rewards_count > 0
-    state_rewards[mask0] = state_rewards_record[mask0] / state_rewards_count[mask0]
-
-    ### Run Value iteration after every episode 
-
-    
-
+    state_rewards[mask0] = state_rewards_record[mask0] / \
+        state_rewards_count[mask0]
+    exit()
+    # Run Value iteration after every episode
