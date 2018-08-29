@@ -22,7 +22,7 @@ def discretized_space():
     within that interval then it belongs to state 1 
     """
 
-    K = 10
+    K = 7
     env = gym.make('CartPole-v0')
 
     high_bound = env.observation_space.high.copy()
@@ -39,7 +39,7 @@ def discretized_space():
             high_bound[i] = high_bound[i-1]
             low_bound[i] = low_bound[i-1]
 
-    steps = space_range/10
+    steps = space_range/K
     x = np.arange(low_bound[0], high_bound[0] + steps[0], steps[1])
     y = np.concatenate(([env.observation_space.low[1] - steps[1]], np.arange(low_bound[1],
                                                                              high_bound[1] + steps[1], steps[1]), [env.observation_space.high[1] + steps[1]]))
@@ -55,7 +55,6 @@ def discretized_space():
     [a.append(i) for i, j in enumerate(states_matrix)]
     a = np.array(a, int).reshape((-1, 1))
     states_matrix = np.c_[a, states_matrix]
-
 
     states_matrix_aux = states_matrix[:, 1:].copy()
 
@@ -83,10 +82,10 @@ def discretized_space():
 
     states_matrix_aux2 = np.array(list_)
 
-    np.savetxt("states_matrix.csv", states_matrix, delimiter= ",")
-    np.savetxt("states_matrix_aux.csv", states_matrix_aux2, delimiter= ",")
-    
+    np.savetxt("states_matrix.csv", states_matrix, delimiter=",")
+    np.savetxt("states_matrix_aux.csv", states_matrix_aux2, delimiter=",")
+
 
 if __name__ == '__main__':
     discretized_space()
-    #print(_)
+    # print(_)

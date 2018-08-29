@@ -14,7 +14,7 @@ def get_state(vector_state, states_matrix, states_matrix_aux2):
     step_size -- the difference between two discretized elements of each of the state variables shape (1, number of state variables)
 
     Returns:
-    state -- an integer that represents the sate number of a vector state (0, k^4 -1)
+    state -- an integer that represents the sate number of a vector state (1, k^4 -1)
 
 
     """
