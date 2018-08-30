@@ -57,3 +57,5 @@ if __name__ == "__main__":
     print(a)
     b = get_state(vector_state_2, state_space_matrix, states_matrix_aux2)
     print(b)
+
+

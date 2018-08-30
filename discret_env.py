@@ -22,7 +22,7 @@ def discretized_space():
     within that interval then it belongs to state 1 
     """
 
-    K = 7
+    K = 4
     env = gym.make('CartPole-v0')
 
     high_bound = env.observation_space.high.copy()
