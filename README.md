@@ -1,2 +1,2 @@
 # CartpoleRL
-Using Open AI Cartpole enviroment to implement reinforcement learning algorithms 
+Using Open AI Cartpole enviroment to implement a value iteration algorithm variation 
